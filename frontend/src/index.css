@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  :root {
+    --background: #F8FAFC; /* Slate 50 */
+    --surface: #FFFFFF;
+    --primary-text: #0F172A; /* Slate 900 */
+    --secondary-text: #64748B; /* Slate 500 */
+    --border: #E2E8F0;
+    --accent: #10B981; /* Emerald 500 */
+    --success: #10B981;
+    --warning: #F59E0B;
+    --error: #EF4444;
+  }
+
+  .dark {
+    --background: #020804; /* Very Dark Green-Black */
+    --surface: #041209; /* Slightly lighter surface */
+    --primary-text: #F4F4F5;
+    --secondary-text: #94A3B8;
+    --border: rgba(255, 255, 255, 0.08);
+    --accent: #10B981; /* Emerald 500 */
+    --accent-glow: rgba(16, 185, 129, 0.3);
+    --cyan-glow: rgba(52, 211, 153, 0.3); /* Teal-ish glow */
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--primary-text);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.4);
+}
+
+/* Premium Static Gradient Background */
+.animated-mesh-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-color: var(--background);
+  transition: background-color 0.3s ease;
+  overflow: hidden;
+}
+
+.dark .animated-mesh-bg {
+  background-image: 
+    radial-gradient(ellipse at 50% -20%, rgba(16, 185, 129, 0.08), transparent 60%),
+    radial-gradient(ellipse at 100% 0%, rgba(4, 120, 87, 0.05), transparent 50%),
+    radial-gradient(ellipse at 0% 100%, rgba(52, 211, 153, 0.03), transparent 50%);
+}
+
+.animated-mesh-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: transparent url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZUZpbHRlciI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOCIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZUZpbHRlcikiLz48L3N2Zz4=") repeat 0 0;
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+/* Hide number input spin buttons */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
