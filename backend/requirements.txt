@@ -10,6 +10,7 @@ python-jose[cryptography]
 passlib[bcrypt]
 python-dotenv
 email-validator
+tf-keras
 deepface>=0.0.86
 opencv-python-headless
 psutil
