@@ -8,19 +8,14 @@ services:
     rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
     
-    # Persistent Disk for SQLite Database and Uploaded Files
-    disk:
-      name: data
-      mountPath: /opt/render/project/src/backend/uploads
-      sizeGB: 1
-      
     envVars:
-      # Tell the app to use the persistent disk for the database
+      # Use default paths since disk is not available on free tier
       - key: DATABASE_URL
-        value: sqlite:///./uploads/sql_app.db
+        value: sqlite:///./sql_app.db
       - key: DB_PATH
-        value: uploads/sql_app.db
+        value: sql_app.db
 
   # ----------------------------------------
   # FRONTEND - React/Vite Static Site
