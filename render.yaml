@@ -4,16 +4,11 @@ services:
   # ----------------------------------------
   - type: web
     name: smart-retail-backend
-    env: python
+    env: docker
     rootDir: backend
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     plan: free
     
     envVars:
-      # Set Python version to 3.10 for TensorFlow compatibility
-      - key: PYTHON_VERSION
-        value: 3.10.14
       # Use default paths since disk is not available on free tier
       - key: DATABASE_URL
         value: sqlite:///./sql_app.db
