@@ -121,7 +121,7 @@ def get_model_status():
 
 @router.get("/health")
 def get_db_health(db: Session = Depends(get_db)):
-    db_path = "sql_app.db"
+    db_path = os.getenv("DB_PATH", "sql_app.db")
     db_size = os.path.getsize(db_path) / (1024 * 1024) if os.path.exists(db_path) else 0
     return {
         "status": "Healthy",

@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { Mail, Lock, User as UserIcon, ArrowRight, Store, MapPin, Globe, Calendar, Camera, Hash, Sun, Moon } from 'lucide-react';
 import { FaceOnboarding } from '../components/biometrics/FaceOnboarding';
 import { useTheme } from '../contexts/ThemeContext';
-
+import { API_URL } from '../lib/api';
 export function Auth() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
@@ -37,7 +37,7 @@ export function Auth() {
         formData.append('username', email);
         formData.append('password', password);
 
-        const response = await fetch('http://localhost:8000/auth/login', {
+        const response = await fetch(`${API_URL}/auth/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -52,7 +52,7 @@ export function Auth() {
         const data = await response.json();
         
         // Fetch user data
-        const userRes = await fetch('http://localhost:8000/auth/me', {
+        const userRes = await fetch(`${API_URL}/auth/me`, {
           headers: { 'Authorization': `Bearer ${data.access_token}` }
         });
         const userData = await userRes.json();
@@ -62,7 +62,7 @@ export function Auth() {
 
       } else {
         // Register logic
-        const response = await fetch('http://localhost:8000/auth/register', {
+        const response = await fetch(`${API_URL}/auth/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export function Auth() {
         loginFormData.append('username', email);
         loginFormData.append('password', password);
 
-        const loginRes = await fetch('http://localhost:8000/auth/login', {
+        const loginRes = await fetch(`${API_URL}/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: loginFormData,
@@ -101,14 +101,14 @@ export function Auth() {
           const formData = new FormData();
           formData.append('file', profilePicture);
           
-          await fetch('http://localhost:8000/auth/upload-profile-picture', {
+          await fetch(`${API_URL}/auth/upload-profile-picture`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${loginData.access_token}` },
             body: formData,
           });
         }
         
-        const userRes = await fetch('http://localhost:8000/auth/me', {
+        const userRes = await fetch(`${API_URL}/auth/me`, {
           headers: { 'Authorization': `Bearer ${loginData.access_token}` }
         });
         const userData = await userRes.json();

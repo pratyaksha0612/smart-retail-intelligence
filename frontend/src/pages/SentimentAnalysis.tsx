@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MessageSquareHeart, Smile, Frown, Meh, BarChart2 } from 'lucide-react';
 import { cn } from '../lib/utils';
-
+import { API_URL } from '../lib/api';
 export function SentimentAnalysis() {
   const [text, setText] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -16,7 +16,7 @@ export function SentimentAnalysis() {
     if (!text.trim()) return;
     setIsAnalyzing(true);
     try {
-      const response = await fetch('http://localhost:8000/api/sentiment/analyze', {
+      const response = await fetch(`${API_URL}/api/sentiment/analyze`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

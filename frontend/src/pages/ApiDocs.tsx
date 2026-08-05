@@ -1,6 +1,6 @@
 import React from 'react';
 import { ExternalLink, Terminal, Code2 } from 'lucide-react';
-
+import { API_URL } from '../lib/api';
 export function ApiDocs() {
   return (
     <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in duration-500 h-full flex flex-col">
@@ -10,7 +10,7 @@ export function ApiDocs() {
           <p className="text-secondary">Explore the interactive OpenAPI reference for the Smart Retail backend.</p>
         </div>
         <a 
-          href="http://localhost:8000/docs" 
+          href={`${API_URL}/docs`} 
           target="_blank" 
           rel="noreferrer"
           className="px-4 py-2 bg-primary text-background font-medium rounded-md hover:opacity-90 transition-opacity flex items-center gap-2"
@@ -54,7 +54,7 @@ export function ApiDocs() {
         </div>
         
         <iframe 
-          src="http://localhost:8000/docs" 
+          src={`${API_URL}/docs`} 
           className="w-full h-full relative z-10 border-none bg-white dark:bg-black/90"
           title="FastAPI Swagger UI"
           onLoad={(e) => {

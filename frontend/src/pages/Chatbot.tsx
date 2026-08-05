@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, RefreshCcw, AlertTriangle } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { api } from '../lib/api';
+import { api, API_URL } from '../lib/api';
 import { useAuth } from '../contexts/AuthContext';
 import ReactMarkdown from 'react-markdown';
 
@@ -111,7 +111,7 @@ export function Chatbot() {
                   <Bot className="w-6 h-6" />
                 ) : user?.profile_picture_path ? (
                   <img 
-                    src={`http://localhost:8000/${user.profile_picture_path}?t=${new Date().getTime()}`} 
+                    src={`${API_URL}/${user.profile_picture_path}?t=${new Date().getTime()}`} 
                     alt={user.full_name || "User"} 
                     className="w-full h-full object-cover rounded-full"
                   />
