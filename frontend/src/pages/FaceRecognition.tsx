@@ -139,7 +139,7 @@ export function FaceRecognition() {
   }, [isScanning]);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (isScanning) {
       interval = setInterval(() => {
         recognizeFace();
