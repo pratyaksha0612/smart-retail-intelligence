@@ -11,6 +11,9 @@ services:
     plan: free
     
     envVars:
+      # Set Python version to 3.10 for TensorFlow compatibility
+      - key: PYTHON_VERSION
+        value: 3.10.14
       # Use default paths since disk is not available on free tier
       - key: DATABASE_URL
         value: sqlite:///./sql_app.db
